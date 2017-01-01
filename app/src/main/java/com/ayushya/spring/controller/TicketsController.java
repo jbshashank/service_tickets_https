@@ -66,8 +66,8 @@ public class TicketsController
 		return ResponseEntity.accepted().body(t);
 	}
 	
-	@RequestMapping(value = "/{status}", method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Tickets>> getAllTicketsByStatus(@RequestParam("status") String status,HttpServletRequest request, HttpServletResponse response,Pageable pageable){
+	@RequestMapping(value = "/status/{status}", method = RequestMethod.GET)
+	public ResponseEntity<Iterable<Tickets>> getAllTicketsByStatus(@PathVariable String status,HttpServletRequest request, HttpServletResponse response,Pageable pageable){
 		String user = request.getHeader("x-userid");
 		Iterable<Tickets> t =repository.findTicketsByUserAndTicketStatus(user,status,pageable);
 		return ResponseEntity.accepted().body(t);
