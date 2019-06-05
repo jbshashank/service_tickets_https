@@ -20,6 +20,7 @@ public class tickets {
 	public String email_id;
 	public String brand;
 	public String product_category;
+	public String product_sub_category;
 	public String model_name;
 	public String serial_number;
 	public String iw;
@@ -38,7 +39,7 @@ public class tickets {
 
 	public tickets(String _id, String call_type, String name, String address_1, String address_2, String street,
 			String city, String state, String pin_code, String tech_name, String mobile_number_1,
-			String mobile_number_2, String email_id, String brand, String product_category, String model_name,
+			String mobile_number_2, String email_id, String brand, String product_category,String product_sub_category, String model_name,
 			String serial_number, String iw, String visit_date, String time_of_visit, String remarks,
 			String date_of_post, String invoice_number, String dealer_name, String ticket_status, String otherDamages) {
 		super();
@@ -57,6 +58,7 @@ public class tickets {
 		this.email_id = email_id;
 		this.brand = brand;
 		this.product_category = product_category;
+		this.product_sub_category = product_sub_category;
 		this.model_name = model_name;
 		this.serial_number = serial_number;
 		this.iw = iw;
@@ -188,6 +190,14 @@ public class tickets {
 
 	public void setProduct_category(String product_category) {
 		this.product_category = product_category;
+	}
+
+	public String getProduct_sub_category() {
+		return product_sub_category;
+	}
+
+	public void setProduct_sub_category(String product_sub_category) {
+		this.product_sub_category = product_sub_category;
 	}
 
 	public String getModel_name() {
