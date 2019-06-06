@@ -31,7 +31,7 @@ public class TicketServiceImp implements TicketService {
 
 	@Cacheable("technicians")
 	public List<technician> getEmployeeData(List<technician> sE) {
-		JSONArray jsonarray = new JSONArray(new RestTemplate().getForObject("http://services-1.finchtech.in/Employee/user/get", String.class));
+		JSONArray jsonarray = new JSONArray(new RestTemplate().getForObject("https://services-1.finchtech.in/Employee/user/get", String.class));
 		for(int i=0; i<jsonarray.length(); i++){
 			try {
 				Thread.sleep(10);
