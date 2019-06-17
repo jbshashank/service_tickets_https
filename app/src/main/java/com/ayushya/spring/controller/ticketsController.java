@@ -59,11 +59,12 @@ public class ticketsController {
 	
 	@RequestMapping(value = "/city/{city_filter}", method = RequestMethod.GET)
 	public Iterable<tickets> getTicketsInCity(@PathVariable String city_filter,Pageable pageable){
-		return repository.findAll(pageable);
+		return (Iterable<tickets>) repository.findByCity(city_filter,pageable);
 	}
+	
 	@RequestMapping(value = "/visit_date/{visit_date}", method = RequestMethod.GET)
 	public Iterable<tickets> getTicketsBasedOnVisitDate(@PathVariable String visit_date,Pageable pageable){
-		return repository.findAll(pageable);
+		return (Iterable<tickets>) repository.findTicketsByVisit_date(visit_date,pageable);
 	}
 	
 
