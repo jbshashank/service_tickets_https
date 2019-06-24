@@ -122,8 +122,8 @@ public class ExcelService {
 	ticketDTO.setModel_name(currentRow.getCell(14).getStringCellValue());
 	ticketDTO.setSerial_number(currentRow.getCell(15).getStringCellValue());
 	ticketDTO.setIw(currentRow.getCell(16).getStringCellValue());
-	ticketDTO.setVisit_date(new SimpleDateFormat("ddMMyyhhmmss").format(new Date()));
-	ticketDTO.setTime_of_visit(new SimpleDateFormat("ddMMyyhhmmss").format(new Date()));
+	//ticketDTO.setVisit_date(new SimpleDateFormat("ddMMyyhhmmss").format(new Date()));
+	//ticketDTO.setTime_of_visit(new SimpleDateFormat("ddMMyyhhmmss").format(new Date()));
 	ticketDTO.setRemarks(currentRow.getCell(19).getStringCellValue());
 	ticketDTO.setDate_of_post(new SimpleDateFormat("ddMMyyhhmmss").format(new Date()));
 	ticketDTO.setDealer_name(currentRow.getCell(22).getStringCellValue());

@@ -10,4 +10,8 @@ public interface TicketService {
 	public void createTicket(List<tickets> ticket);
 
 	public List<technician> getEmployeeData(List<technician> sE);
+
+	public tickets updateTicketStatus(String ticket_id, String status);
+
+	tickets updateTicket(String ticket_id, tickets t);
 }

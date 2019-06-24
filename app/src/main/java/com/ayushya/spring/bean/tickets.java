@@ -1,6 +1,11 @@
 package com.ayushya.spring.bean;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class tickets {
 	
@@ -24,8 +29,10 @@ public class tickets {
 	public String model_name;
 	public String serial_number;
 	public String iw;
-	public String visit_date;
-	public String time_of_visit;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") 
+//	@DateTimeFormat(iso=ISO.DATE_TIME)
+	@DateTimeFormat(style = "M-")
+	public Date visit_time;
 	public String remarks;
 	public String date_of_post;
 	public String invoice_number;
@@ -40,7 +47,7 @@ public class tickets {
 	public tickets(String _id, String call_type, String name, String address_1, String address_2, String street,
 			String city, String state, String pin_code, String tech_name, String mobile_number_1,
 			String mobile_number_2, String email_id, String brand, String product_category,String product_sub_category, String model_name,
-			String serial_number, String iw, String visit_date, String time_of_visit, String remarks,
+			String serial_number, String iw, Date visit_time, String remarks,
 			String date_of_post, String invoice_number, String dealer_name, String ticket_status, String otherDamages) {
 		super();
 		this._id = _id;
@@ -62,8 +69,7 @@ public class tickets {
 		this.model_name = model_name;
 		this.serial_number = serial_number;
 		this.iw = iw;
-		this.visit_date = visit_date;
-		this.time_of_visit = time_of_visit;
+		this.visit_time = visit_time;
 		this.remarks = remarks;
 		this.date_of_post = date_of_post;
 		this.invoice_number = invoice_number;
@@ -224,20 +230,12 @@ public class tickets {
 		this.iw = iw;
 	}
 
-	public String getVisit_date() {
-		return visit_date;
+	public Date getVisit_time() {
+		return visit_time;
 	}
 
-	public void setVisit_date(String visit_date) {
-		this.visit_date = visit_date;
-	}
-
-	public String getTime_of_visit() {
-		return time_of_visit;
-	}
-
-	public void setTime_of_visit(String time_of_visit) {
-		this.time_of_visit = time_of_visit;
+	public void setVisit_time(Date visit_time) {
+		this.visit_time = visit_time;
 	}
 
 	public String getRemarks() {
