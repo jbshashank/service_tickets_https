@@ -1,6 +1,6 @@
 #!/bin/bash
 
-domains=(services-tickets.finchtech.in www.services-tickets.finchtech.in)
+domains=(services-2.finchtech.in www.services-2.finchtech.in)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="" # Adding a valid address is strongly recommended

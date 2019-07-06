@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 
 import com.ayushya.spring.bean.EventAttributes;
 import com.ayushya.spring.bean.Events;
-import com.ayushya.spring.bean.tickets;
+import com.ayushya.spring.bean.Tickets;
 import com.ayushya.spring.repository.EventsRepository;
-import com.ayushya.spring.repository.technicianRepository;
+import com.ayushya.spring.repository.TechnicianRepository;
 
 @Service
 public class EventsService {
@@ -33,7 +33,7 @@ public class EventsService {
 	
 	
 	
-	public void populateEventsObject(tickets orginal,tickets current) {
+	public void populateEventsObject(Tickets orginal,Tickets current) {
 		EventAttributes EA = new EventAttributes();
 		ArrayList<EventAttributes> eventAttributes = new ArrayList<>();
 		Events EV = eventsRepository.findOne(orginal.get_id());
@@ -57,7 +57,7 @@ public class EventsService {
 	}
 	
 	
-	public void populateEventsStatus(tickets original,String newStatus) {
+	public void populateEventsStatus(Tickets original,String newStatus) {
 		EventAttributes EA = new EventAttributes();
 		ArrayList<EventAttributes> eventAttributes = new ArrayList<>();
 		Events EV = eventsRepository.findOne(original.get_id());

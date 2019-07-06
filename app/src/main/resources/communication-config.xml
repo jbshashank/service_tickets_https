@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder
+		location="classpath:communication-config.properties" />
+
+	<bean id="communicationHandler"
+		class="com.ayushya.communications.operations.CommunicationHandler"
+		init-method="init">
+		<property name="notificationHandlerRegistry">
+			<map>
+				<entry key="sms" value-ref="smsNotificationHandler" />
+				<entry key="email" value-ref="emailNotificationHandler" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="smsNotificationHandler"
+		class="com.ayushya.communications.operations.SMSNotificationHandler">
+		<property name="messageFormatterRegistry">
+			<map>
+				<entry key="smsTicketLoggedFormatter"
+					value-ref="smsTicketLoggedFormatter" />
+				<entry key="smsTicketLoggedFormatter_ticketcreated"
+					value-ref="smsTicketLoggedFormatter_ticketcreated" />
+				<entry key="smsTicketLoggedFormatter_ticketopened"
+					value-ref="smsTicketLoggedFormatter_ticketopened" />
+				<entry key="smsTicketLoggedFormatter_customernotavailable"
+					value-ref="smsTicketLoggedFormatter_customernotavailable" />
+				<entry key="smsTicketLoggedFormatter_estimateapproval"
+					value-ref="smsTicketLoggedFormatter_estimateapproval" />
+				<entry key="smsTicketLoggedFormatter_invoicegenerated"
+					value-ref="smsTicketLoggedFormatter_invoicegenerated" />
+			</map>
+		</property>
+
+		<property name="messageChannelRegistry">
+			<map>
+				<entry key="twilioSMSChannel" value-ref="twilioSMSChannel" />
+			</map>
+		</property>
+	</bean>
+	<bean id="emailNotificationHandler"
+		class="com.ayushya.communications.operations.EmailNotificationHandler">
+		<property name="messageFormatterRegistry">
+			<map>
+				<entry key="emailTicketLoggedFormatter"
+					value-ref="emailTicketLoggedFormatter" />
+					<entry key="emailTicketLoggedFormatter_ticketcreated"
+						value-ref="emailTicketLoggedFormatter_ticketcreated" />
+					<entry key="emailTicketLoggedFormatter_ticketopened"
+						value-ref="emailTicketLoggedFormatter_ticketopened" />
+					<entry key="emailTicketLoggedFormatter_customernotavailable"
+						value-ref="emailTicketLoggedFormatter_customernotavailable" />
+					<entry key="emailTicketLoggedFormatter_estimateapproval"
+						value-ref="smsTicketLoggedFormatter_estimateapproval" />
+					<entry key="emailTicketLoggedFormatter_invoicegenerated"
+						value-ref="emailTicketLoggedFormatter_invoicegenerated" />
+			</map>
+		</property>
+
+		<property name="messageChannelRegistry">
+			<map>
+				<entry key="emailTwilioChannel" value-ref="twilioEmailChannel" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="smsTicketLoggedFormatter"
+		class="com.ayushya.communications.operations.SMSTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${smsTicketLoggedFormatter}" />
+	</bean>
+	<bean id="smsTicketLoggedFormatter_ticketcreated"
+		class="com.ayushya.communications.operations.SMSTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${smsTicketLoggedFormatter_ticketcreated}" />
+	</bean>
+	<bean id="smsTicketLoggedFormatter_ticketopened"
+		class="com.ayushya.communications.operations.SMSTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${smsTicketLoggedFormatter_ticketopened}" />
+	</bean>
+	<bean id="smsTicketLoggedFormatter_customernotavailable"
+		class="com.ayushya.communications.operations.SMSTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="smsTicketLoggedFormatter_customernotavailable" />
+	</bean>
+	<bean id="smsTicketLoggedFormatter_estimateapproval"
+		class="com.ayushya.communications.operations.SMSTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${smsTicketLoggedFormatter_estimateapproval}" />
+	</bean>
+	<bean id="smsTicketLoggedFormatter_invoicegenerated"
+		class="com.ayushya.communications.operations.SMSTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${smsTicketLoggedFormatter_invoicegenerated}" />
+	</bean>
+
+
+	<bean id="emailTicketLoggedFormatter"
+		class="com.ayushya.communications.operations.EmailTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${emailTicketLoggedFormatter}" />
+	</bean>
+		<bean id="emailTicketLoggedFormatter_ticketcreated"
+		class="com.ayushya.communications.operations.EmailTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${emailTicketLoggedFormatter_ticketcreated}" />
+	</bean>
+	<bean id="emailTicketLoggedFormatter_ticketopened"
+		class="com.ayushya.communications.operations.EmailTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${emailTicketLoggedFormatter_ticketopened}" />
+	</bean>
+	<bean id="emailTicketLoggedFormatter_customernotavailable"
+		class="com.ayushya.communications.operations.EmailTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="emailTicketLoggedFormatter_customernotavailable" />
+	</bean>
+	<bean id="emailTicketLoggedFormatter_estimateapproval"
+		class="com.ayushya.communications.operations.EmailTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${emailTicketLoggedFormatter_estimateapproval}" />
+	</bean>
+	<bean id="emailTicketLoggedFormatter_invoicegenerated"
+		class="com.ayushya.communications.operations.EmailTicketLoggedFormatter">
+		<property name="messageExpression"
+			value="${emailTicketLoggedFormatter_invoicegenerated}" />
+	</bean>
+
+
+	<bean id="twilioSMSChannel"
+		class="com.ayushya.communications.operations.TwilioSMSChannelClient">
+		<property name="accountSID"
+			value="ACbd0f829832d0b3a0bb5c709a77e5331a" />
+		<property name="accountTocken"
+			value="d664f99e8a9e02dcb25f93d36702311e" />
+		<property name="from" value="12054303537" />
+	</bean>
+
+
+	<bean id="twilioEmailChannel"
+		class="com.ayushya.communications.operations.TwilioEmailChannelClient">
+		<property name="fromAddress"
+			value="firebasetesting2019" />
+		<property name="password"
+			value="Testing@19" />
+		<property name="host" value="smtp.gmail.com" />
+		<property name="propEmailConfigs">
+
+			<props>
+				<prop key="mail.smtp.port">587</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+
+		</property>
+	</bean>
+
+</beans>

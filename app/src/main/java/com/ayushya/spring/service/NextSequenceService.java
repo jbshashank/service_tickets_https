@@ -33,4 +33,20 @@ public class NextSequenceService {
 		
         return ticketNumber;
     }
+    
+    public String getNextSequence(String seqName){
+    	int sequence=1;   	
+    	CustomSequences counter = mongo.findOne(query(where("_id").is(seqName)), CustomSequences.class);
+    	if(counter!=null ) {sequence = counter.getSeq()+1;}
+    	CustomSequences counter1 = mongo.findAndModify(
+            query(where("_id").is(seqName)),
+            new Update().set("seq",sequence),
+            options().returnNew(true).upsert(true),
+            CustomSequences.class);
+
+		String numberAsString = String.format("%06d", counter1.getSeq());
+		String ticketNumber = "ATASPART" + numberAsString;
+		
+        return ticketNumber;
+    }
 }

@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.ayushya.spring.bean.Events;
-import com.ayushya.spring.bean.feedback;
+import com.ayushya.spring.bean.Feedback;
 
 public interface EventsRepository extends MongoRepository<Events, String>{
 }

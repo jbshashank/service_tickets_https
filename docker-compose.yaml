@@ -46,6 +46,6 @@ services:
     expose:
       - "8080"
       - "8443"
-    command: mvn clean spring-boot:run
+    command: mvn clean install spring-boot:run
     depends_on:
       - mongodb

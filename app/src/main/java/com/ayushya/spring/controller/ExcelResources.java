@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ayushya.spring.bean.tickets;
+import com.ayushya.spring.bean.Tickets;
 import com.ayushya.spring.service.ExcelService;
 import com.ayushya.spring.service.TicketService;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @Description(value = "Resource layer for handling REST requests.")
@@ -42,9 +43,9 @@ public class ExcelResources {
     }
 
     @PostMapping(value = "/excel", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<tickets>> mapExcelRowsToObject(@RequestParam("file") MultipartFile multipartFile) throws IOException
+    public ResponseEntity<List<Tickets>> mapExcelRowsToObject(@RequestParam("file") MultipartFile multipartFile) throws IOException, ParseException
     {
-        List<tickets> ticketDTOList = this.excelService.readFromExcelWithKnownObject(multipartFile);
+        List<Tickets> ticketDTOList = this.excelService.readFromExcelWithKnownObject(multipartFile);
         ticketService.createTicket(ticketDTOList);
         return new ResponseEntity<>(ticketDTOList, HttpStatus.OK);
     }

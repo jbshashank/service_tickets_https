@@ -3,8 +3,8 @@ package com.ayushya.spring.repository;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.ayushya.spring.bean.logs;
+import com.ayushya.spring.bean.Logs;
 
-public interface logsRepository extends MongoRepository<logs, String> {
-	logs findBy_id(ObjectId _id);
+public interface logsRepository extends MongoRepository<Logs, String> {
+	Logs findBy_id(ObjectId _id);
 }
