@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ayushya.spring.bean.Invoice;
 import com.ayushya.spring.repository.PurchasedItemsRepository;
+import com.ayushya.spring.repository.InvoiceRepository;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -41,6 +42,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Autowired
 	PurchasedItemsRepository purchasedItemsRepository;
+
+	@Autowired
+	InvoiceRepository invoiceRepository;
 
 	@Override
 	public String generateInvoice(String ticket_id, HttpServletRequest httpServletRequest,
@@ -355,7 +359,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	public String saveConsumedParts(String ticket_id,Invoice purchasedItems, HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse) {
 		purchasedItems.set_id(ticket_id);
-		purchasedItemsRepository.save(purchasedItems);
+		invoiceRepository.save(purchasedItems);
 		return "success";
 	}
 	

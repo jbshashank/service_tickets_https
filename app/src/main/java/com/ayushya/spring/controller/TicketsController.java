@@ -58,10 +58,11 @@ public class TicketsController
 	{
 		System.out.println(" REached Service");
 		String user = request.getHeader("x-userid");
-		//user="dvsnkumar72@gmail.com";
-		System.out.println(" REached Service <<user >> "+user);
-		Iterable<Tickets> t =repository.findTicketsByUser(user,pageable);
-		
+		Iterable<Tickets> t =null;
+		if(user!=null)
+		t =repository.findTicketsByUser(user,pageable);
+		else
+		t =repository.findAll(pageable);	
 		return ResponseEntity.accepted().body(t);
 	}
 	

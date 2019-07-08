@@ -24,12 +24,16 @@ public class PurchasedItemsController {
 	@Autowired
 	private InvoiceService invoiceService;
 	
-//	@RequestMapping(value = "/{_id}", method = RequestMethod.POST)
-//	public String createPurchasedItems(@PathVariable String _id,@Valid @RequestBody PurchasedItems items) {
-//		items.set_id(_id);
-//		repository.save(items);
-//		return "{\"Updation\":\"SUCCESS\"}";
-//	}
+	@Autowired
+	private PurchasedItemsRepository repository;
+	
+	@RequestMapping(value = "/{_id}", method = RequestMethod.POST)
+	public String createPurchasedItems(@PathVariable String _id,@Valid @RequestBody PurchasedItems items) {
+		items.set_id(_id);
+		repository.save(items);
+		return "{\"Updation\":\"SUCCESS\"}";
+	}
+	
 	@RequestMapping(value = "/tickets/closed/{ticket_id}", method = RequestMethod.POST)
 	public String storePartsConsumed(@PathVariable String ticket_id,@Valid @RequestBody Invoice purchasedItems,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
 		return invoiceService.saveConsumedParts(ticket_id,purchasedItems,httpServletRequest,httpServletResponse);
