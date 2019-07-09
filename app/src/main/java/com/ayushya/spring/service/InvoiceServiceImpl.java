@@ -358,9 +358,13 @@ public class InvoiceServiceImpl implements InvoiceService {
 	@Override
 	public String saveConsumedParts(String ticket_id,Invoice purchasedItems, HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse) {
+		if(ticket_id!=null) {
 		purchasedItems.set_id(ticket_id);
 		invoiceRepository.save(purchasedItems);
 		return "success";
+		}
+		else 
+			return "failure";
 	}
 	
 //	public static void process(Document document, JSONObject json) throws JSONException, DocumentException {

@@ -10,9 +10,9 @@ import com.ayushya.spring.bean.InventoryParts;
 
 public interface InventoryAccessoryRepository extends MongoRepository<InventoryAccessories, String>{
 	InventoryAccessories findBy_id(ObjectId _id);
-	@Query("{brand : ?0 , category: ?1 , subCategory: ?2, model:?3 }")
+	@Query("{brand : ?0 , category: ?1 , subCategory: ?2, model:?3 , status : { $in: [\"Available\"] }}")
 	Iterable<InventoryAccessories> fetchMatchingAccessories(String brand,String category,String sub_category,String model);
-	@Query("{brand : ?0 , category: ?1 , model:?2 }")
+	@Query("{brand : ?0 , category: ?1 , model:?2 ,status : { $in: [\"Available\"]}}")
 	Iterable<InventoryAccessories> fetchMatchingAccessoriesWithoutSubCategory(String brand,String category,String model);
 	
 }

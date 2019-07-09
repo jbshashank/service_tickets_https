@@ -42,12 +42,9 @@ public class InventoryPartsController {
 	
 	@RequestMapping(value = "/request", method = RequestMethod.POST)
 	public InventoryParts requestNewItem(@Valid @RequestBody InventoryParts inventoryParts,@RequestParam("type") String requestType,HttpServletRequest httpServletRequest) {
-		InventoryParts inventoryParts1 = null;
-		System.out.println(" REQUEST TYPE IS HERERERERERERERE "+requestType+":"+httpServletRequest.getParameter("x-ticketnumber")+":"+httpServletRequest.getParameter("x-accountid")+":::"+httpServletRequest.getParameter("x-userid"));
 		inventoryParts.set_id(nextSequenceService.getNextSequence("customSequences_parts"));
-		inventoryParts.setStatus("Requested");
-		inventoryParts1 = inventoryPartService.requestNewPart(inventoryParts);
-		System.out.println(" REQUEST TYPE IS <<PARTS>> "+inventoryParts1.getBrand());
+		inventoryParts.setStatus("Available");
+		if(requestType!=null && requestType.contentEquals("true"))inventoryParts.setStatus("Requested");
 		return inventoryPartService.requestNewPart(inventoryParts);
 	}
 	

@@ -34,9 +34,10 @@ public class PurchasedItemsController {
 		return "{\"Updation\":\"SUCCESS\"}";
 	}
 	
-	@RequestMapping(value = "/tickets/closed/{ticket_id}", method = RequestMethod.POST)
-	public String storePartsConsumed(@PathVariable String ticket_id,@Valid @RequestBody Invoice purchasedItems,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
-		return invoiceService.saveConsumedParts(ticket_id,purchasedItems,httpServletRequest,httpServletResponse);
+	@RequestMapping(value = "/tickets/closed/", method = RequestMethod.POST)
+	public String storePartsConsumed(HttpServletRequest request, HttpServletResponse response,@Valid @RequestBody Invoice purchasedItems,HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) {
+		String ticket_id_header = request.getHeader("x-ticket");
+		return invoiceService.saveConsumedParts(ticket_id_header,purchasedItems,httpServletRequest,httpServletResponse);
 	}
 	
 }

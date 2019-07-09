@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ayushya.spring.bean.InventoryAccessories;
@@ -42,9 +43,10 @@ public class InventoryAccesoryController {
 
 	
 	@RequestMapping(value = "/request", method = RequestMethod.POST)
-	public InventoryAccessories requestNewAccessory(@Valid @RequestBody InventoryAccessories itemDetails) {
+	public InventoryAccessories requestNewAccessory(@RequestParam("type") String requestType,@Valid @RequestBody InventoryAccessories itemDetails) {
 		itemDetails.set_id(nextSequenceService.getNextSequence("customSequences_accessory"));
-		itemDetails.setStatus("Requested");
+		itemDetails.setStatus("Available");
+		if(requestType!=null && requestType.contentEquals("true"))	itemDetails.setStatus("Requested");
 		return inventoryService.requestNewAccessory(itemDetails);
 	}
 	

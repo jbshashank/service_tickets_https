@@ -8,9 +8,10 @@ public class EventAttributes {
 	private String eventAttributeChangedFrom;
 	private String eventAttributeChangedTo;
 	private String eventAttributeConfirmation;
+	private String eventAttributeChangeReason;
 	
 	public EventAttributes(String eventAttributeName, String eventAttributeAction, String eventAttributeTimestamp,
-			String eventAttributeChangedFrom, String eventAttributeChangedTo, String eventAttributeConfirmation) {
+			String eventAttributeChangedFrom, String eventAttributeChangedTo, String eventAttributeConfirmation,String eventAttributeChangeReason) {
 		super();
 		this.eventAttributeName = eventAttributeName;
 		this.eventAttributeAction = eventAttributeAction;
@@ -18,6 +19,7 @@ public class EventAttributes {
 		this.eventAttributeChangedFrom = eventAttributeChangedFrom;
 		this.eventAttributeChangedTo = eventAttributeChangedTo;
 		this.eventAttributeConfirmation = eventAttributeConfirmation;
+		this.setEventAttributeChangeReason(eventAttributeChangeReason);
 	}
 
 	public EventAttributes() {
@@ -70,6 +72,14 @@ public class EventAttributes {
 
 	public void setEventAttributeConfirmation(String eventAttributeConfirmation) {
 		this.eventAttributeConfirmation = eventAttributeConfirmation;
+	}
+
+	public String getEventAttributeChangeReason() {
+		return eventAttributeChangeReason;
+	}
+
+	public void setEventAttributeChangeReason(String eventAttributeChangeReason) {
+		this.eventAttributeChangeReason = eventAttributeChangeReason;
 	}	
 	
 }

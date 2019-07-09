@@ -78,7 +78,7 @@ public class EventsService {
 			EA.setEventAttributeChangedFrom(original.getTicket_status());
 			EA.setEventAttributeChangedTo(newStatus);
 			EA.setEventAttributeConfirmation("YES");
-			EA.setEventAttributeName("Status");
+			EA.setEventAttributeName("Status");		
 			eventAttributes.add(EA);
 			EV.setEventAttributes(eventAttributes);
 		}
@@ -86,6 +86,34 @@ public class EventsService {
 		
 	}
 	
-	
+	public void populateEventsStatusReason(Tickets original,String newStatus,String changeReason) {
+		EventAttributes EA = new EventAttributes();
+		ArrayList<EventAttributes> eventAttributes = new ArrayList<>();
+		Events EV = eventsRepository.findOne(original.get_id());
+		if(EV==null)
+		{
+		EV = new Events();
+		EV.set_id(original.get_id());
+		EV.setEventSourceId(original.get_id());
+		}
+		else
+		{
+		eventAttributes.addAll(EV.getEventAttributes());
+		}
+		if(!original.getTicket_status().equals(newStatus)) {
+			
+			((EventAttributes) EA).setEventAttributeTimestamp(new Date().toLocaleString());
+			EA.setEventAttributeAction("Updated");
+			EA.setEventAttributeChangedFrom(original.getTicket_status());
+			EA.setEventAttributeChangedTo(newStatus);
+			EA.setEventAttributeConfirmation("YES");
+			EA.setEventAttributeName("Status");	
+			EA.setEventAttributeChangeReason(changeReason);
+			eventAttributes.add(EA);
+			EV.setEventAttributes(eventAttributes);
+		}
+		eventsRepository.save(EV);
+		
+	}
 	
 }
