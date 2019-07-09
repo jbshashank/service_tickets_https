@@ -77,11 +77,12 @@ public class TicketServiceImp implements TicketService {
 	}
 
 	
-	public Tickets updateTicketStatus(String ticket_id,String status) {
+	public Tickets updateTicketStatus(String ticket_id,String status,String reason) {
 		Tickets t = ticketRepository.findOne(ticket_id);
 		if(t!=null)
 		{
-			eventsService.populateEventsStatus(t, status);
+			//eventsService.populateEventsStatus(t, status);
+			eventsService.populateEventsStatusReason(t,status,reason);
 			t.setTicket_status(status);
 			if(t.brand!=null && t.model_name !=null && t.product_category!=null)
 				t = ticketRepository.save(t);

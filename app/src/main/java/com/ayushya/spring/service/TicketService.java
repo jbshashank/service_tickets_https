@@ -11,7 +11,7 @@ public interface TicketService {
 
 	public Technician getEmployeeData(Tickets ticket);
 
-	public Tickets updateTicketStatus(String ticket_id, String status);
+	public Tickets updateTicketStatus(String ticket_id, String status,String reason);
 
 	Tickets updateTicket(String ticket_id, Tickets t);
 }

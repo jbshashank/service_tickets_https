@@ -154,9 +154,16 @@ public class TicketsController
 	}
 
 	@RequestMapping(value = "/ticket/{ticket_id}/{status}", method = RequestMethod.PUT)
-	public ResponseEntity<Tickets> updateTicketStatus(@PathVariable String ticket_id,@PathVariable String status)
+	public ResponseEntity<Tickets> updateTicketStatus(@PathVariable String ticket_id,@PathVariable String status,@PathVariable String reason)
 	{
-		Tickets t = ticketService.updateTicketStatus(ticket_id,status);
+		Tickets t = ticketService.updateTicketStatus(ticket_id,status,null);
+		return ResponseEntity.accepted().body(t);
+	}
+	
+	@RequestMapping(value = "/ticket/{ticket_id}/{status}/{reason}", method = RequestMethod.PUT)
+	public ResponseEntity<Tickets> updateTicketStatusreason(@PathVariable String ticket_id,@PathVariable String status,@PathVariable String reason)
+	{
+		Tickets t = ticketService.updateTicketStatus(ticket_id,status,reason);
 		return ResponseEntity.accepted().body(t);
 	}
 
