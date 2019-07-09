@@ -124,7 +124,7 @@ public class TicketServiceImp implements TicketService {
 		ticket.setState(t.getState());
 		ticket.setStreet(t.getStreet());
 		ticket.setTech_name(t.getTech_name());
-		ticket.setTicket_status(t.getTicket_status());
+		//ticket.setTicket_status(t.getTicket_status());
 		ticket.setVisit_time(t.getVisit_time());
 		ticket.setOtherDamages(ticket.getOtherDamages());
 		eventsService.populateEventsObject(ticket,t);
