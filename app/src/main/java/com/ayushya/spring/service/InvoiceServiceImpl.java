@@ -361,10 +361,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 		if(ticket_id!=null) {
 		purchasedItems.set_id(ticket_id);
 		invoiceRepository.save(purchasedItems);
-		return "success";
+		return "{\"Message\":\"sucess\"}";
 		}
 		else 
-			return "failure";
+			return "{\"Message\":\"failure\"}";
 	}
 	
 //	public static void process(Document document, JSONObject json) throws JSONException, DocumentException {
