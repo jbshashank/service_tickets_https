@@ -66,10 +66,10 @@ public class TicketsController
 		return ResponseEntity.accepted().body(t);
 	}
 	
-	@RequestMapping(value = "/open", method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Tickets>> getAllTicketsByStatus(HttpServletRequest request, HttpServletResponse response,Pageable pageable,@RequestParam("user") String user)
+	@RequestMapping(value = "/{status}", method = RequestMethod.GET)
+	public ResponseEntity<Iterable<Tickets>> getAllTicketsByStatus(@PathVariable String status,HttpServletRequest request, HttpServletResponse response,Pageable pageable,@RequestParam("user") String user)
 	{
-		Iterable<Tickets> t =repository.findTicketsByUserAndTicketStatus(user,"open",pageable);
+		Iterable<Tickets> t =repository.findTicketsByUserAndTicketStatus(user,status,pageable);
 		return ResponseEntity.accepted().body(t);
 	}
 
@@ -116,11 +116,11 @@ public class TicketsController
 		return repository.findOne(_id);
 	}
 
-	@RequestMapping(value = "/closed", method = RequestMethod.GET)
-	public List<Tickets> getClosedTickets()
-	{
-		return new ClosedTicketService().getClosedTickets(repository.findAll());
-	}
+// 	@RequestMapping(value = "/closed", method = RequestMethod.GET)
+// 	public List<Tickets> getClosedTickets()
+// 	{
+// 		return new ClosedTicketService().getClosedTickets(repository.findAll());
+// 	}
 
 	@RequestMapping(value = "/city/{city_filter}", method = RequestMethod.GET)
 	public Iterable<Tickets> getTicketsInCity(@PathVariable String city_filter,
