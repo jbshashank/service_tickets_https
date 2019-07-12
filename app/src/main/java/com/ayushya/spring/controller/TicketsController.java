@@ -66,10 +66,11 @@ public class TicketsController
 		return ResponseEntity.accepted().body(t);
 	}
 	
-	@RequestMapping(value = "/open", method = RequestMethod.GET)
-	public ResponseEntity<Iterable<Tickets>> getAllTicketsByStatus(HttpServletRequest request, HttpServletResponse response,Pageable pageable,@RequestParam("user") String user)
+	@RequestMapping(value = "/{status}", method = RequestMethod.GET)
+	public ResponseEntity<Iterable<Tickets>> getAllTicketsByStatus(@RequestParam("status") String status,HttpServletRequest request, HttpServletResponse response,Pageable pageable)
 	{
-		Iterable<Tickets> t =repository.findTicketsByUserAndTicketStatus(user,"open",pageable);
+		String user = request.getHeader("x-userid");
+		Iterable<Tickets> t =repository.findTicketsByUserAndTicketStatus(user,status,pageable);
 		return ResponseEntity.accepted().body(t);
 	}
 
@@ -161,7 +162,7 @@ public class TicketsController
 	}
 	
 	@RequestMapping(value = "/ticket/{ticket_id}/{status}/{reason}", method = RequestMethod.PUT)
-	public ResponseEntity<Tickets> updateTicketStatusreason(@PathVariable String ticket_id,@PathVariable String status,@PathVariable String reason)
+	public ResponseEntity<Tickets> updateTicketStatusreason(@PathVariable String ticket_id,@PathVariable String status, @PathVariable String reason)
 	{
 		Tickets t = ticketService.updateTicketStatus(ticket_id,status,reason);
 		return ResponseEntity.accepted().body(t);
