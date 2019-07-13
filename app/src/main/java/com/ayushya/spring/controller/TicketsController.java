@@ -74,12 +74,10 @@ public class TicketsController
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public List<Tickets> getAllTickets1(@RequestParam("status") String status,
-			Pageable pageable)
-	{
-
-		return filterTickets(status, repository.findAll(pageable));
-
+	public ResponseEntity<Iterable<Tickets>> getAllTickets1(@RequestParam("status") String status,HttpServletRequest request, HttpServletResponse response,Pageable pageable){
+		String user = request.getHeader("x-userid");
+		Iterable<Tickets> t =repository.findTicketsByUserAndTicketStatus(user,status,pageable);
+		return ResponseEntity.accepted().body(t);
 	}
 
 	/**
