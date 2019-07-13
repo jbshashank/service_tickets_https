@@ -33,7 +33,7 @@ public class CartController {
 	}
 	
 	@GetMapping(value = "/test")
-	public String addPartsToSample(@Valid @RequestBody Cart cart) {
+	public String addPartsToSample() {
 		return "We are testing DO";
 	}
 	
