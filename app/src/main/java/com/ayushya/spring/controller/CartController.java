@@ -32,4 +32,9 @@ public class CartController {
 		return repository.findOne(complaintNo);
 	}
 	
+	@GetMapping(value = "/test")
+	public String addPartsToSample() {
+		return "We are testing DO";
+	}
+	
 }
