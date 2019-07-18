@@ -127,19 +127,19 @@ public class ExcelService {
 	if(ticketDTO.getTech_name()!=null)ticketDTO.setTicket_status("open");
 	}
 	
-	ticketDTO.setMobile_number_1(getCellValueAsString(currentRow.getCell(10)));
-	ticketDTO.setMobile_number_2(getCellValueAsString(currentRow.getCell(11)));
-	ticketDTO.setEmail_id(getCellValueAsString(currentRow.getCell(12)));
-	ticketDTO.setBrand(getCellValueAsString(currentRow.getCell(13)));
-	ticketDTO.setProduct_category(getCellValueAsString(currentRow.getCell(14)));
-    ticketDTO.setProduct_sub_category(getCellValueAsString(currentRow.getCell(15)));
-	ticketDTO.setModel_name(getCellValueAsString(currentRow.getCell(16)));
-	ticketDTO.setSerial_number(getCellValueAsString(currentRow.getCell(17)));
-	ticketDTO.setIw(getCellValueAsString(currentRow.getCell(18)));
-	String visitDate = getCellValueAsString(currentRow.getCell(19));
+	ticketDTO.setMobile_number_1(getCellValueAsString(currentRow.getCell(9)));
+	ticketDTO.setMobile_number_2(getCellValueAsString(currentRow.getCell(10)));
+	ticketDTO.setEmail_id(getCellValueAsString(currentRow.getCell(11)));
+	ticketDTO.setBrand(getCellValueAsString(currentRow.getCell(12)));
+	ticketDTO.setProduct_category(getCellValueAsString(currentRow.getCell(13)));
+    ticketDTO.setProduct_sub_category(getCellValueAsString(currentRow.getCell(14)));
+	ticketDTO.setModel_name(getCellValueAsString(currentRow.getCell(15)));
+	ticketDTO.setSerial_number(getCellValueAsString(currentRow.getCell(16)));
+	ticketDTO.setIw(getCellValueAsString(currentRow.getCell(17)));
+	String visitDate = getCellValueAsString(currentRow.getCell(18));
 //	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 //	String strDate = dateFormat.format(visitDate1);
-	String visitTime = getCellValueAsString(currentRow.getCell(20));
+	String visitTime = getCellValueAsString(currentRow.getCell(19));
 //	visitDate = "12-12-2019";
 //	visitTime = "1005AM";
 	// Conversion
@@ -147,10 +147,10 @@ public class ExcelService {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	sdf.setTimeZone(TimeZone.getTimeZone("IST"));
 	ticketDTO.setVisit_time(sourceDate);
-	ticketDTO.setRemarks(getCellValueAsString(currentRow.getCell(21)));
+	ticketDTO.setRemarks(getCellValueAsString(currentRow.getCell(20)));
 	ticketDTO.setDate_of_post(new SimpleDateFormat("ddMMyyhhmmss").format(new Date()));
-	ticketDTO.setInvoice_number(getCellValueAsString(currentRow.getCell(23)));
-	ticketDTO.setDealer_name(getCellValueAsString(currentRow.getCell(24)));
+	ticketDTO.setInvoice_number(getCellValueAsString(currentRow.getCell(22)));
+	ticketDTO.setDealer_name(getCellValueAsString(currentRow.getCell(23)));
 	ticketDTO.setTicket_status("Open");
 
             ticketDTOList.add(ticketDTO);
