@@ -132,13 +132,14 @@ public class ExcelService {
 	ticketDTO.setEmail_id(getCellValueAsString(currentRow.getCell(11)));
 	ticketDTO.setBrand(getCellValueAsString(currentRow.getCell(12)));
 	ticketDTO.setProduct_category(getCellValueAsString(currentRow.getCell(13)));
-	ticketDTO.setModel_name(getCellValueAsString(currentRow.getCell(14)));
-	ticketDTO.setSerial_number(getCellValueAsString(currentRow.getCell(15)));
-	ticketDTO.setIw(getCellValueAsString(currentRow.getCell(16)));
-	String visitDate = getCellValueAsString(currentRow.getCell(17));
+    ticketDTO.setProduct_sub_category(getCellValueAsString(currentRow.getCell(14)));
+	ticketDTO.setModel_name(getCellValueAsString(currentRow.getCell(15)));
+	ticketDTO.setSerial_number(getCellValueAsString(currentRow.getCell(16)));
+	ticketDTO.setIw(getCellValueAsString(currentRow.getCell(17)));
+	String visitDate = getCellValueAsString(currentRow.getCell(18));
 //	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 //	String strDate = dateFormat.format(visitDate1);
-	String visitTime = getCellValueAsString(currentRow.getCell(18));
+	String visitTime = getCellValueAsString(currentRow.getCell(19));
 //	visitDate = "12-12-2019";
 //	visitTime = "1005AM";
 	// Conversion
@@ -146,9 +147,9 @@ public class ExcelService {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	sdf.setTimeZone(TimeZone.getTimeZone("IST"));
 	ticketDTO.setVisit_time(sourceDate);
-	ticketDTO.setRemarks(getCellValueAsString(currentRow.getCell(19)));
+	ticketDTO.setRemarks(getCellValueAsString(currentRow.getCell(20)));
 	ticketDTO.setDate_of_post(new SimpleDateFormat("ddMMyyhhmmss").format(new Date()));
-	ticketDTO.setDealer_name(getCellValueAsString(currentRow.getCell(22)));
+	ticketDTO.setDealer_name(getCellValueAsString(currentRow.getCell(21)));
 	ticketDTO.setTicket_status("Open");
 
             ticketDTOList.add(ticketDTO);
